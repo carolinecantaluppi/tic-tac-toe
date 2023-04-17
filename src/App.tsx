@@ -1,25 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
+import { loginResponse } from './types';
+import { AuthContext, AuthContextType } from './_shared';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import Login, { LoginPath } from './components/Login.component/login.component'
+import SignUp, { SignUpPath } from './components/Signup.component/signup.component'
+import { Navbar, NotFound } from './components';
+import { Game } from './game';
 
-function App() {
+interface AppProps {
+  title?: string;
+  description?: string
+  body?: {
+    first: string,
+    second?: string
+  }
+}
+
+export const App = (
+  {
+    title,
+    description,
+    body
+  }: AppProps) => {
+
+  const [user, setUser] = useState<loginResponse>();
+
+  const authContextInitialValue: AuthContextType = {
+    user, 
+    setUser
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthContext.Provider value={authContextInitialValue}>
+      <Router>
+        <div className="App">
+          <Navbar/>
+          <div className="auth-wrapper">
+            <div className="auth-inner">
+              <Routes>
+                <Route path="/" element={<Login />} />
+                <Route path='/sign-in' element={<Login />} />
+                <Route path='/sign-up' element={<SignUp />} />
+                <Route path='/game' element={<Game />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </div>
+          </div>
+        </div>
+      </Router>
+    </AuthContext.Provider>
   );
 }
 
