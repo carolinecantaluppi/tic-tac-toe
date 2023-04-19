@@ -6,7 +6,7 @@ import { AuthContext, AuthContextType, LocalStorageUserKey } from './_shared';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { Login, LoginPath } from './components/Login.component/login.component'
 import { SignUp, SignUpPath } from './components/Signup.component/signup.component'
-import { Navbar, NotFound } from './components';
+import { Logout, Navbar, NotFound, Scoreboard } from './components';
 import { Game } from './game';
 import { GetFromLocalStorage } from './_shared/helper/localStorageFunction';
 
@@ -38,19 +38,25 @@ export const App = (
   return (
     <AuthContext.Provider value={authContextInitialValue}>
       <Router>
-        
         <div className="App">
           <Navbar/>
           <div className="auth-wrapper">
             <div className="auth-inner">
               <Routes>
                 <Route path='/game' element={<Game/>}/>
-              {/* {!!user
-              ? */}
-                <Route path='/sign-in' element={<Login/>}/>
-                <Route path='/sign-up' element={<SignUp/>}/>
-                <Route path="*" element={<NotFound/>}/>
-              {/* } */}
+              {!!user
+              ?
+              <>
+                <Route path='/scoreboard' element={<Scoreboard/>}/>
+                <Route path='/logout' element={<Logout/>}/>
+              </>
+              :
+                <>
+                  <Route path='/sign-in' element={<Login/>}/>
+                  <Route path='/sign-up' element={<SignUp/>}/>
+                </>
+              } 
+              <Route path="*" element={<NotFound/>}/>
               </Routes>
             </div>
           </div>

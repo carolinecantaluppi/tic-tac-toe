@@ -18,31 +18,27 @@ export const Login = () => {
     password: ''
   }
 
-  const [signin, setSignin] = useState<LoginRequest>(request)
   const [invalidLogin, setInvalidLogin] = useState<boolean>(false)
   const {user, setUser} = useContext(AuthContext)
   const [emailAddress, setEmailAddress] = useState('')
   const [password, setPassword] = useState('')
-
 
   // const inputCreate = ()
   const navigate = useNavigate()
 
   const loginFunction = async (user: string, pass: string) => {
     console.log(user, pass);
-    const response = await login(user,pass)
-    
-    setUser(response)
-    setSignin(request)
-
-    if (!response) {
-      setInvalidLogin(true)
-      RemoveFromLocalStorage(LocalStorageUserKey)
-      return
-    }
-
-    SaveToLocalStorage(LocalStorageUserKey, response)
-  } 
+    login(user,pass)
+      .then((response) => {
+        SaveToLocalStorage(LocalStorageUserKey, response)
+        setUser(response)
+        navigate("/scoreboard");
+      })
+      .catch(() => {
+        setInvalidLogin(true)
+        RemoveFromLocalStorage(LocalStorageUserKey)
+      })
+  }
 
   return (
     <form>
@@ -79,7 +75,7 @@ export const Login = () => {
         </div>
       </div>
       <div className="d-grid">
-        <button type="submit" className="btn btn-primary" onClick={() => {loginFunction(emailAddress, password)}}>
+        <button type="button" className="btn btn-primary" onClick={() => {loginFunction(emailAddress, password)}}>
           Submit
         </button>
       </div>

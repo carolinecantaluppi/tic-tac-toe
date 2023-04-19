@@ -19,7 +19,7 @@ ol, ul {
 
 .square {
   background: #fff;
-  border: 1px solid black;
+  border: 2px solid black;
   float: left;
   font-size: 35px;
   font-weight: bold;

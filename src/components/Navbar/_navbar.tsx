@@ -23,15 +23,26 @@ export const Navbar = () => {
                 <Link className="navbar-brand" to={'/game'}>Game</Link>
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul className="navbar-nav ml-auto">
-                    <li className="nav-item">
-                        <Link className="nav-link" to={'/sign-in'}>Login</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to={'/sign-up'}>Sign up</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to={'/logout'}>Logout</Link>
-                    </li>
+                        {!!setUser
+                        ?
+                        <>
+                            <li className="nav-item">
+                                <Link className="nav-link" to={'/sign-up'}>Sign up</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to={'/sign-in'}>Login</Link>
+                            </li>
+                        </>
+                        :
+                        <>
+                            <li className="nav-item">
+                                <Link className="nav-link" to={'/scoreboard'}>Scoreboard</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to={'/logout'}>Logout</Link>
+                            </li>
+                        </>
+                        }
                     </ul>
                 </div>
             </div>

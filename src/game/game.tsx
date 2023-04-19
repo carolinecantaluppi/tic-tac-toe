@@ -83,6 +83,7 @@ export class Game extends React.Component<{}, GameProps> {
         if (calculateWinner(squares) || squares[i]) {
             return;
         }      
+        
         squares[i] = this.state.xIsNext ? 'X' : 'O';
         this.setState({ 
             history: history.concat([{
