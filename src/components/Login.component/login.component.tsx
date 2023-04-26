@@ -22,8 +22,6 @@ export const Login = () => {
   const {user, setUser} = useContext(AuthContext)
   const [emailAddress, setEmailAddress] = useState('')
   const [password, setPassword] = useState('')
-
-  // const inputCreate = ()
   const navigate = useNavigate()
 
   const loginFunction = async (user: string, pass: string) => {

@@ -7,15 +7,6 @@ import { LoginPath } from "../Login.component/login.component";
 export const Navbar = () => {
 
     const {setUser} = useContext(AuthContext)
-    const navigate = useNavigate()
-
-    const logout = () => {
-        // remove the user from context:
-        setUser(undefined)
-        // remove the user from storage:
-        RemoveFromLocalStorage(LocalStorageUserKey)
-        navigate(LoginPath)
-    }
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light fixed-top">
