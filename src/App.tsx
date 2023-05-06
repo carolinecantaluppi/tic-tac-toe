@@ -4,8 +4,8 @@ import './App.css';
 import { loginResponse } from './types';
 import { AuthContext, AuthContextType, LocalStorageUserKey } from './_shared';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-import { Login, LoginPath } from './components/Login.component/login.component'
-import { SignUp, SignUpPath } from './components/Signup.component/signup.component'
+import { Login } from './components/Login.component/login.component'
+import { SignUp } from './components/Signup.component/signup.component'
 import { Logout, Navbar, NotFound, Scoreboard } from './components';
 import { Game } from './game';
 import { GetFromLocalStorage } from './_shared/helper/localStorageFunction';
@@ -44,18 +44,17 @@ export const App = (
             <div className="auth-inner">
               <Routes>
                 <Route path='/game' element={<Game/>}/>
-              {!!user
-              ?
-              <>
-                <Route path='/scoreboard' element={<Scoreboard/>}/>
-                <Route path='/logout' element={<Logout/>}/>
-              </>
-              :
+              {/* {!!user ? */}
                 <>
-                  <Route path='/sign-in' element={<Login/>}/>
+                  <Route path='/login' element={<Login/>}/>
                   <Route path='/sign-up' element={<SignUp/>}/>
                 </>
-              } 
+              {/* : */}
+                <>
+                  <Route path='/scoreboard' element={<Scoreboard playerName={''} points={0} data={0}/>}/>
+                  <Route path='/logout' element={<Logout/>}/>
+                </>
+              {/* }  */}
               <Route path="*" element={<NotFound/>}/>
               </Routes>
             </div>

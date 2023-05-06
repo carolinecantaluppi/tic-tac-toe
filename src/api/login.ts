@@ -8,8 +8,8 @@ interface LoginRequest {
 
 export const login = async (username: string, password: string): Promise <loginResponse> => {
    
-    if (username === 'gyfama@email.com' && password === '12345') {
-        return Promise.resolve({id: 1, username: 'gyfama', firstName: 'gy', lastName: 'fama', email: 'gyfama@email.com'})
+    if (username === 'name@email.com' && password === '12345') {
+        return Promise.resolve({id: 1, username: 'name', firstName: 'na', lastName: 'me', email: 'name@email.com'})
     } else {
         return Promise.reject(undefined)
     }

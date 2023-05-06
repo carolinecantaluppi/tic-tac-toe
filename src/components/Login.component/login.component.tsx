@@ -4,8 +4,6 @@ import { login } from '../../api'
 import { RemoveFromLocalStorage, SaveToLocalStorage } from '../../_shared/helper/localStorageFunction'
 import { useNavigate } from 'react-router-dom'
 
-export const LoginPath = 'login'
-
 export const Login = () => {
 
   interface LoginRequest {
